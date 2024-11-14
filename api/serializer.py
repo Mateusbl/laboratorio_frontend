@@ -13,12 +13,12 @@ class TokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
-        token = ['full_name'] = user.profile.full_name
-        token = ['username'] = user.username
-        token = ['email'] = user.email
-        token = ['bio'] = user.profile.bio 
-        token = ['image'] = str(user.profile.image.url)
-        token = ['verified'] = user.profile.verified
+        token['full_name'] = user.profile.full_name
+        token['username'] = user.username
+        token['email'] = user.email
+        token['bio'] = user.profile.bio 
+        token['image'] = str(user.profile.image.url)
+        token['verified'] = user.profile.verified
         return token
 class RegisterSerializer(serializers.ModelSerializer):
    password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
